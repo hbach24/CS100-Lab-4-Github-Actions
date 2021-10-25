@@ -1,4 +1,6 @@
 #include "../header/rectangle.hpp"
+#include <iostream>
+using namespace std;
 
 Rectangle::Rectangle(){
 	this->width = 0;
