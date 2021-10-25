@@ -39,7 +39,7 @@ jobs:
       - name: Restore artifacts, or setup vcpkg (do not install any package)
         uses: lukka/run-vcpkg@v10
         with: 
-                vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}
+                vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
         
       - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
         uses: lukka/run-cmake@v10
