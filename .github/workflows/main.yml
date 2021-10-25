@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      #- uses: actions/checkout@v2
       
       - uses: get-cmake@v2.8
       # Runs a single command using the runners shell
@@ -36,12 +36,14 @@ jobs:
           #echo Add other actions to build,
           #echo test, and deploy your project.
       
-      #- name: Restore artifacts, or setup vcpkg (do not install any package)
-        #uses: lukka/run-vcpkg@v10
+      - name: Restore artifacts, or setup vcpkg (do not install any package)
+        uses: lukka/run-vcpkg@v10
         
-      #- name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
-        #uses: lukka/run-cmake@v10
-        #with:
+      - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
+        uses: lukka/run-cmake@v10
+        with:
+                configurePreset: 'ninja-multi-vcpkg'
+                buildPreset: 'ninja-multi-vcpkg'
 
       - name: Run test
         run: |
