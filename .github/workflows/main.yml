@@ -44,6 +44,6 @@ jobs:
       
       - name: Run test
         run: |
-                cmake
+                cmake --version
                 make
                 ./test
