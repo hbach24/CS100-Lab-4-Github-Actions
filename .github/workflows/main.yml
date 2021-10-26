@@ -25,7 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v2
       
-      #- uses: lukka/get-cmake@latest
+      - uses: lukka/get-cmake@latest
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
@@ -35,15 +35,28 @@ jobs:
         #run: |
           #echo Add other actions to build,
           #echo test, and deploy your project.
-      - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v1.9
+      #- name: Setup cmake
+        #uses: jwlawson/actions-setup-cmake@v1.9
+        #with:
+                #cmake-version: '3.3.0'
+      #- name: Use cmake
+        #run: cmake --version
+      - name: Restore artifacts, or setup vcpkg (do not install any package)
+        uses: lukka/run-vcpkg@v10
         with:
-                cmake-version: '3.3.0'
-      - name: Use cmake
-        run: cmake --version
-      
+                vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+                runVcpkgInstall: true
+
+      - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
+        uses: lukka/run-cmake@v10
+        with: 
+                cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+                configurePreset: 'ninja-multi-vcpkg'
+                buildPreset: 'ninja-multi-vcpkg'
+
+
       - name: Run test
         run: |
-                cmake --version
+                cmake
                 make
                 ./test
