@@ -4,7 +4,7 @@ name: CI
 
 on:
   push:
-    branches: [ main, jhuan333/ci_setup, jhuan333/passing_tests, hbach003_failing_tests ]
+    branches: [ main, jhuan333/ci_setup, jhuan333/passing_tests, hbach003/failing_tests ]
   pull_request:
     branches: [ main ]
 
