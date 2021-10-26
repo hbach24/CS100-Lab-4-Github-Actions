@@ -9,6 +9,13 @@ class Rectangle {
         Rectangle();
         Rectangle(int w,int h);
 
+	int getWidth(){
+		return this->width;
+	}
+	int getHeight(){
+		return this->height;
+	}
+
         void set_width(int w);
         void set_height(int h);
         int area();
